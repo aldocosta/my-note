@@ -1,0 +1,138 @@
+<div class="row">
+    <div class='col-md-4'>
+        <fieldset>
+            <legend>
+                <h3><span class="label label-info">Menu</span></h3>                
+            </legend>
+            <div>              
+                <div #datepicker id="datepicker"></div>
+            </div>            
+            <div>
+                <p>
+                    <a (click)='clearNote()' style='font-size:16pt;color:black!important' href="#" class="btn btn-default glyphicon glyphicon-plus" role="button" data-toggle="modal" data-target="#myModal">                                    
+                    </a>                   
+                </p>
+            </div>
+        </fieldset>
+    </div>    
+    <div class='col-md-8'>
+        <div class="row">
+        <fieldset>
+            <legend>
+                <h3><span class="label label-info">Notas</span></h3>                
+            </legend>
+          <div class="col-sm-6 col-md-4" *ngFor="let n of notas | notasdescricaFilter: filterValue | notasFilter : filtertitleValue ">
+            <div class="thumbnail" style='background-color:  #ffd24d'>              
+            {{n.creationDate | date}}
+              <div class="caption">
+                <h3>{{n.title}}</h3>                
+                <p>{{n.description | customSlice:0:100}}</p>                
+                <hr/>
+                <p>
+                    <!--<input type='checkbox' [(ngModel)]="n.clear" />                     -->
+                    <span *ngIf='n.clear' class="glyphicon glyphicon-thumbs-up"></span>
+                    <span *ngIf='!n.clear' class="glyphicon glyphicon-thumbs-down"></span>                    
+                    {{n.clear?"Finalizado":"Pendente"}}
+                </p>
+                <hr/>
+                <p>
+                    <a style='font-size:13pt;color:black!important' href="#" class="glyphicon glyphicon-eye-open" role="button" (click)='showNote(n)' role="button" data-toggle="modal" data-target="#myModal"></a> 
+                    <!--<a (click)='removeNota(n)' style='font-size:13pt;color:black!important' href="#" class="glyphicon glyphicon-remove" role="button"></a>                    -->
+                    <a data-toggle="modal" (click)='setNote(n)' data-target="#modalalert" style='font-size:13pt;color:black!important' href="#" class="glyphicon glyphicon-remove" role="button"></a>
+                </p>
+              </div>
+            </div>
+          </div>              
+        </fieldset>
+        </div>        
+    </div>        
+</div>
+<div class="row">
+    <div class='col-md-4'>
+        <fieldset>
+            <legend>                
+                <!--<div class="dropdown">
+                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        Filtros
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <li><a href="#">Por descrição</a></li>
+                        <li><a href="#">Por titulo</a></li>
+                        <li><a href="#">Por Pendência</a></li>                        
+                        <li><a href="#">Por Data</a></li>
+                    </ul>
+                </div>                                      -->
+            </legend>
+            
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Pesquisar por descrição" 
+                [value]="filterValue" 
+                (input)="filterValue = $event.target.value"/>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Pesquisar por titulo" 
+                [value]="filtertitleValue" 
+                (input)="filtertitleValue = $event.target.value"/>
+            </div>
+        </fieldset>
+    </div>
+</div>    
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Nova Nota</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                <div class="form-group">
+                    <label for="txtTitulo">Título da Nota</label>
+                    <input name='txtTitulo' type="text" class="form-control" id="txtTitulo" [(ngModel)]="nota.title" placeholder="Meu título"/>
+                </div>
+                <div class="form-group">
+                    <label for="txtDescricaonota">Conteúdo da nota</label>                
+                    <textarea id="txtDescricaonota" name='txtDescricaonota' class="form-control"
+                     [(ngModel)]="nota.description" rows="10"></textarea>                
+                </div>                
+                <div class="checkbox"> 
+                    <label>
+                    <input id='chkclear' name='chkclear' type="checkbox" [(ngModel)]="nota.clear" /> Executado?
+                    </label>
+                </div>
+                <!--<button type="submit" class="btn btn-default">Submit</button>-->
+                </form>
+            </div>
+            <div class="modal-footer">
+                <span *ngIf="!editing" class="glyphicon glyphicon-ok" (click)="addNota(nota)" style='cursor: pointer;font-size:20pt' role="button" data-toggle="modal" data-target="#myModal"></span>
+                <span *ngIf="editing" class="glyphicon glyphicon-edit" (click)="saveAll()" style='cursor: pointer;font-size:20pt' role="button" data-toggle="modal" data-target="#myModal"></span>
+                <span class="glyphicon glyphicon-remove" style='cursor: pointer;font-size:20pt' role="button" data-toggle="modal" data-target="#myModal"></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--<button type="button" data-toggle="modal" data-target="#modalalert">Launch modal</button>-->
+
+<!--MODAL ALERT -->
+<div class="modal fade" tabindex="-1" role="dialog" id='modalalert'>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Exclusão</h4>
+      </div>
+      <div class="modal-body">
+        <p>Confirma a Exclusão do registro?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+        <button (click)='removeNota(nota)' type="button" data-dismiss="modal" class="btn btn-primary">Confirmar</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
