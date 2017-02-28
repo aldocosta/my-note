@@ -1,3 +1,5 @@
+My descriptions of the development is about 34 line.
+
 # MyNotes
 
 This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.24.
@@ -30,3 +32,19 @@ Run `ng github-pages:deploy` to deploy to Github Pages.
 
 To get more help on the `angular-cli` use `ng help` or go check out the [Angular-CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 "# my-note" 
+
+###This project is just for study of using ANGULAR 2,  i've used  bootstrap with that and jQuery UI for some components, but i don't encourage that
+###i just did the following
+### u can open this project with sublime also
+1 Learn a little about ANGULA 2 CLI
+    * Created the project with ng new and publish it with ng build --prod (I've hosted on IIS)
+2 Learn about create Components and Classes
+3 Learn about pipes
+    * Create a pipe for transform a string
+    * Create a pipe for filter a *ngFor
+4 Learn about Services
+5 Learn how to use @ViewChild to access a dom component 
+
+
+I had issues using "styleUrls", that just do not work...
+
