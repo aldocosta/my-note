@@ -48,3 +48,4 @@ To get more help on the `angular-cli` use `ng help` or go check out the [Angular
 
 I had issues using "styleUrls", that just do not work...
 
+http://aldocosta.com.br/notes/index.html
