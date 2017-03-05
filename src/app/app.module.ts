@@ -24,7 +24,6 @@ import { NotasdescricaoFilterPipe } from './Componentes/pipes/notasdescricaoFilt
     HttpModule
   ],
   providers: [],
-  bootstrap: [AppComponent,HeaderComponent,
-  NotasComponent]
+  bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { } 

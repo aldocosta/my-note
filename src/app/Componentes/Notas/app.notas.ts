@@ -5,8 +5,8 @@ import { LocalStorageService } from '../../Servicos/LocalStorageService'
 @Component({
   selector: 'app-notas',
   templateUrl: './app.notas.html',
-  styleUrls: ['../../app.component.css']
-})
+  styleUrls: ['./app.notas.component.css']
+}) 
 export class NotasComponent implements OnInit { 
     nota:NotaClass;
     notas:NotaClass[];
