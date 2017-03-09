@@ -14,6 +14,16 @@
                 </p>
             </div>
         </fieldset>
+          <fieldset>
+            <legend> 
+                <h3><span class="label label-info">Filtros</span></h3>                                               
+            </legend>                        
+            <div class="form-group">
+                <input type="search" class="form-control" placeholder="Pesquisar por titulo/descrição " 
+                [value]="filtertitleValue" 
+                (input)="filtertitleValue = $event.target.value"/>
+            </div>            
+        </fieldset>
     </div>    
     <div class='col-md-8'>
         <div class="row">
@@ -21,7 +31,7 @@
             <legend>
                 <h3><span class="label label-info">Notas</span></h3>                
             </legend>
-          <div class="col-sm-6 col-md-4" *ngFor="let n of notas | notasdescricaFilter: filterValue | notasFilter : filtertitleValue ">
+          <div class="col-sm-6 col-md-4" *ngFor="let n of notas | notasFilter : filtertitleValue ">
             <div class="thumbnail" style='background-color:  #ffd24d'>              
             {{n.creationDate | date}}
               <div class="caption">
@@ -43,42 +53,10 @@
               </div>
             </div>
           </div>              
-        </fieldset>
+        </fieldset>        
         </div>        
     </div>        
 </div>
-<div class="row">
-    <div class='col-md-4'>
-        <fieldset>
-            <legend>                
-                <!--<div class="dropdown">
-                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                        Filtros
-                        <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                        <li><a href="#">Por descrição</a></li>
-                        <li><a href="#">Por titulo</a></li>
-                        <li><a href="#">Por Pendência</a></li>                        
-                        <li><a href="#">Por Data</a></li>
-                    </ul>
-                </div>                                      -->
-            </legend>
-            
-            <div class="form-group">
-                <input type="search" class="form-control" placeholder="Pesquisar por descrição" 
-                [value]="filterValue" 
-                (input)="filterValue = $event.target.value"/>
-            </div>
-            <div class="form-group">
-                <input type="search" class="form-control" placeholder="Pesquisar por titulo" 
-                [value]="filtertitleValue" 
-                (input)="filtertitleValue = $event.target.value"/>
-            </div>
-        </fieldset>
-    </div>
-</div>    
-
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

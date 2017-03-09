@@ -14,11 +14,16 @@ export class NotasComponent implements OnInit {
     filterValue:string;
     filtertitleValue:string;
     editing:boolean;
+    fitrotodos:boolean;
+    fitrofim:boolean;
+    fitronotfim:boolean;
+
     @ViewChild('datepicker') datepicker;
     
     constructor() {
         this.filterValue = "";
         this.filtertitleValue = "";
+        this.fitrotodos = true;
         this.init();
     }
 

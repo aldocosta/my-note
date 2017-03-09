@@ -10,13 +10,15 @@ import { NotasComponent } from './Componentes/notas/app.notas';
 import { CustomSlicePipe } from './Componentes/pipes/customSlice.pipe';
 import { NotasFilterPipe } from './Componentes/pipes/notasFilter.pipe';
 import { NotasdescricaoFilterPipe } from './Componentes/pipes/notasdescricaoFilter.pipe';
+import { NotascheckFilterPipe } from './componentes/pipes/notascheck-filter.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,NotasComponent,
     CustomSlicePipe,NotasFilterPipe,
-    NotasdescricaoFilterPipe
+    NotasdescricaoFilterPipe,
+    NotascheckFilterPipe
   ],
   imports: [
     BrowserModule,

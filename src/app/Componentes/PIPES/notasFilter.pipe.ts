@@ -9,8 +9,9 @@ import { NotaClass } from '.././Notas/NotaClass';
 export class NotasFilterPipe implements PipeTransform {   
     transform(value :NotaClass[], title:string):NotaClass[] {
       if(title==undefined)return;
-      var ret = value.filter(function(obj){
-         return (obj.title.toLowerCase().indexOf(title.toLowerCase())>-1);
+      var ret = value.filter((obj)=>{
+         return (obj.title.toLowerCase().indexOf(title.toLowerCase())>-1) ||
+         obj.description.toLowerCase().indexOf(title.toLowerCase())>-1;
       });
       return ret;    
   }
